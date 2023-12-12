@@ -1,8 +1,9 @@
-import {studentRepository} from "../repositories/index.js";
+import { studentRepository } from "../repositories/index.js";
+import HttpStatusCode from "../exceptions/HttpStatusCode.js";
 
 const getAllStudents = async (req, res) => {
     await studentRepository.getAllStudent().then(() => {
-        res.status(200).json({
+        res.status(HttpStatusCode.OK).json({
             message: 'Get all student successfully',
             data: [
                 {
@@ -27,7 +28,7 @@ const getAllStudents = async (req, res) => {
 
 const getStudentById = async (req, res) => {
     await studentRepository.detail(req?.params.id)
-    res.status(200).json({
+    res.status(HttpStatusCode.OK).json({
         message: 'Get all student successfully',
         data: {
             name: "tuanvd",
@@ -38,17 +39,17 @@ const getStudentById = async (req, res) => {
 }
 
 const updateStudent = async (req, res) => {
-    const {name, email, languages, gender, phoneNumber, address} = req?.body
-    await studentRepository.update({name, email, languages, gender, phoneNumber, address})
-    res.status(200).json({
+    const { name, email, languages, gender, phoneNumber, address } = req?.body
+    await studentRepository.update({ name, email, languages, gender, phoneNumber, address })
+    res.status(HttpStatusCode.OK).json({
         message: 'update student successfully',
     })
 }
 
 const insertStudent = async (req, res) => {
-    const {name, email, languages, gender, phoneNumber, address} = req?.body
-    await studentRepository.insert({name, email, languages, gender, phoneNumber, address})
-    res.status(200).json({
+    const { name, email, languages, gender, phoneNumber, address } = req?.body
+    await studentRepository.insert({ name, email, languages, gender, phoneNumber, address })
+    res.status(HttpStatusCode.OK).json({
         message: 'insert student successfully',
     })
 }

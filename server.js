@@ -17,5 +17,5 @@ app.use('/students', studentRouter)
 
 app.listen(PORT, async () => {
     await connect()
-    console.log(`App start on port: ${PORT}`)
+    console.log(`App start on port: ${ PORT }`)
 })

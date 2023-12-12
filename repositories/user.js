@@ -1,4 +1,4 @@
-const login = async ({email, password}) => {
+const login = async ({ email, password }) => {
     console.log('login repository user')
 }
 const register = async (
