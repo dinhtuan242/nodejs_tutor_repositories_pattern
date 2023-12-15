@@ -1,8 +1,8 @@
 import mongoose, { Schema, ObjectId } from "mongoose";
-import { isEmail } from "validator";
-// import isEmail from "validator/lib/isEmail.js";
+// import { isEmail } from "validator";
+import isEmail from "validator/lib/isEmail.js"
 
-const Student = mongoose.model('User',
+const Student = mongoose.model('Student',
     new Schema({
         id: { type: ObjectId },
         name: {
@@ -25,10 +25,10 @@ const Student = mongoose.model('User',
         },
         gender: {
             type: String,
-            enum: {
-                value: ['Male', 'Female'],
-                message: '{VALUE} is not supported'
-            }
+            // enum: {
+            //     value: ['Male', 'Female'],
+            //     message: '{VALUE} is not supported'
+            // }
         },
         phoneNumber: {
             type: String,

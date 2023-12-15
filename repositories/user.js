@@ -1,5 +1,10 @@
+import { OutputType, print } from "../helpers/print.js"
+import { User } from '../models/index.js'
+import Exception from "../exceptions/Exception.js"
+import bcrypt from 'bcrypt'
+
 const login = async ({ email, password }) => {
-    console.log('login repository user')
+    print('login repository user')
 }
 const register = async (
     {
@@ -10,7 +15,16 @@ const register = async (
         address
     }
 ) => {
-    console.log('register repository user')
+    const existingUser = await User.findOne({ email }).exec()
+    if (!!existingUser) {
+        throw new Exception(Exception.USER_ALREADY_EXIST)
+    }
+    const hashPassword = await bcrypt.hash(password, parseInt(process.env.SALT_ROUNDS))
+    const newUser = new User({ name, email, password: hashPassword, phoneNumber, address })
+    newUser.save().then(() => {
+        print('insert user success', OutputType.SUCCESS)
+    })
+    return newUser
 }
 const getAllUsers = async () => {
     console.log('getAllUsers repository user')

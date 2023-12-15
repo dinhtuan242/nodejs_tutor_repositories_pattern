@@ -1,6 +1,6 @@
-import mongoose, { Schema, ObjectId } from "mongoose";
-import { isEmail } from "validator";
-// import isEmail from "validator/lib/isEmail.js";
+import mongoose, { Schema, ObjectId } from "mongoose"
+// import { isEmail } from "validator";
+import isEmail from "validator/lib/isEmail.js"
 
 const User = mongoose.model('User',
     new Schema({
@@ -22,7 +22,8 @@ const User = mongoose.model('User',
         },
         password: {
             type: String,
-            required: true
+            required: true,
+            select: false
         },
         phoneNumber: {
             type: String
